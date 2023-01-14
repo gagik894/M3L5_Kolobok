@@ -10,17 +10,13 @@ import android.graphics.Path;
 
 public class BitmapBank {
     Bitmap background;
-    Bitmap[] kolobok;
+    Bitmap kolobok;
 
 
     public BitmapBank(Resources resources) {
         background = BitmapFactory.decodeResource(resources, R.drawable.les2);
         background = scaleImage(background);
-        kolobok = new Bitmap[4];
-        kolobok[0] = BitmapFactory.decodeResource(resources, R.drawable.kolobok0);
-        kolobok[1] = BitmapFactory.decodeResource(resources, R.drawable.kolobok0);
-        kolobok[2] = BitmapFactory.decodeResource(resources, R.drawable.kolobok0);
-        kolobok[3] = BitmapFactory.decodeResource(resources, R.drawable.kolobok0);
+        kolobok = BitmapFactory.decodeResource(resources, R.drawable.kolobok0);
     }
 
     public Bitmap getKolobok(int frame) {
@@ -37,17 +33,17 @@ public class BitmapBank {
         final Canvas canvas = new Canvas(outputBitmap);
         canvas.clipPath(path);
         canvas.rotate((float) (frame*4),width/2,height/2);
-        canvas.drawBitmap(kolobok[1], 0, 0, null);
+        canvas.drawBitmap(kolobok, 0, 0, null);
         Bitmap.createBitmap(outputBitmap, 0, 0, outputBitmap.getWidth(), outputBitmap.getHeight(), matrix, true);
         return outputBitmap;
     }
 
     public int getKolobokWidth() {
-        return kolobok[0].getWidth();
+        return kolobok.getWidth();
     }
 
     public int getKolobokHeight() {
-        return kolobok[0].getWidth();
+        return kolobok.getWidth();
     }
 
     public Bitmap getBackground() {
